@@ -5,9 +5,8 @@ import CountryCard from './CountryCard';
 import {SearchOutlined ,DownOutlined} from '@ant-design/icons';
 import { Input , Dropdown ,Menu,Space,Button} from 'antd';
 const FlagsGrid = ({isDarkMode }) => {
-  const [countries, setCountries] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-// Assuming you have a state variable for selected region
+const [countries, setCountries] = useState([]);
+const [searchTerm, setSearchTerm] = useState('');
 const [selectedRegion, setSelectedRegion] = useState(null);
 const [filteredCountries, setFilteredCountries] = useState([]);
   useEffect(() => {
@@ -54,7 +53,7 @@ const [filteredCountries, setFilteredCountries] = useState([]);
  // Update the selected region when an item is clicked in the dropdown menu
 const handleMenuClick = ({ key }) => { 
   
-  setSelectedRegion(key == '' ? selectedRegion : getLabelForSelectedRegion(key));
+  setSelectedRegion(key === '' ? selectedRegion : getLabelForSelectedRegion(key));
 };
 
 const prevSelectedRegion = useRef();
@@ -83,25 +82,10 @@ const menu = (
   </Menu>
 );
 
-
-const [currentColorValue, setCurrentColorValue] = useState('white'); // Initial color value
-document.documentElement.style.setProperty('--current-color', currentColorValue);
-const handleColorChange = () => {
-    // Change the color dynamically (replace this logic with your dynamic color change)
-    const newColor = isDarkMode ? '#2B3743' : 'white'; // You need to implement or fetch the new color dynamically
-    document.documentElement.style.setProperty('--current-color', newColor);
-    setCurrentColorValue(newColor);
-};
-
-useEffect(() => {
-  handleColorChange(); // Ensure the color is set initially based on isDarkMode
-}, [isDarkMode, handleColorChange]);
-
-
 return (
   <>
   <div>
-  <div className={`flags-grid header light ${isDarkMode ? '' : ''} `} style={{margin:'auto' , maxWidth :"1200px" , display: 'grid', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
+  <div className={`flags-grid header  ${isDarkMode ? 'dark' : ''} `} style={{margin:'auto' , maxWidth :"1200px" , display: 'grid', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
     <Input
       className={`searchBar ${isDarkMode ? 'darkHeader' : ''}`}
       type="text"
@@ -110,35 +94,8 @@ return (
       size="large" 
       addonBefore={<SearchOutlined />}
       onChange={(e) => { setSearchTerm(e.target.value)}}
-      style={{Color: `${isDarkMode ? 'white ' : 'black'}`,backgroundColor:`${isDarkMode ? '#2B3743 ' : 'white'}`, minwidth: '300px' , maxWidth:'370px', gridColumnStart: '1' , gridColumnEnd: '2'}} 
+      style={{color: `${isDarkMode ? 'white ' : 'black'}`,backgroundColor:`${isDarkMode ? '#2B3743 ' : 'white'}`, minWidth: '300px' , maxWidth:'370px', gridColumnStart: '1' , gridColumnEnd: '2'}} 
       />
-   
-       {/* <Dropdown.Button
-        icon={<DownOutlined />}
-        className = {`dropdownMen`}
-        onClick={() =>handleColorChange()} 
-        overlay={menu}
-        trigger={['click']}
-        style={{
-          justifyContent: 'end',
-          height: '40px',
-          gridColumnStart: '-2',
-          backgroundColor: 'var(--current-color)',
-          color: isDarkMode ? 'white' : 'black',
-          border: 'none',
-          outline: 'none',
-          '&:click': {
-            backgroundColor: 'var(--current-color)', // Prevent hover styles
-            color: isDarkMode ? 'white' : 'black',
-          },
-        }}
-        overlayStyle={{
-          backgroundColor: isDarkMode ? '#2B3743' : 'white',
-          color: isDarkMode ? 'white' : 'black',
-        }}
-      >
-        Filter by region
-      </Dropdown.Button> */}
 
       <Dropdown
        className = {`dropdownMen`}
@@ -148,10 +105,10 @@ return (
        color: isDarkMode ? 'white' : 'black',
        border: 'none',
        outline: 'none',}}
-       overlay={menu}
-        placement="bottom"
+       menu
+      placement="bottom"
       >
-      <Button onClick={handleColorChange} style={{gridColumnStart: '-2' ,justifySelf:'end', width:'max-content', justifyContent:'end' , Height :'40px', color: isDarkMode ? 'white' : 'black', backgroundColor: 'var(--current-color)' }}>  Filter by region  <DownOutlined />
+      <Button style={{gridColumnStart: '-2' ,justifySelf:'end', width:'max-content', justifyContent:'end' , Height :'40px', color: isDarkMode ? 'white' : 'black', backgroundColor: isDarkMode ? '#2B3743' : 'white' }}>  Filter by region  <DownOutlined />
 </Button>
       </Dropdown>
 

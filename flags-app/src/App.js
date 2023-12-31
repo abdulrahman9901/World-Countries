@@ -39,19 +39,19 @@ useEffect(() => {
   console.log(shouldToggleDarkMode)
 
   if (shouldToggleDarkMode) {
-  toggleDarkModeClasses(elmWitchChange, 'dark');
+  //  toggleDarkModeClasses(elmWitchChange, 'dark');
   // toggleDarkModeClasses(elmWitchChange2, 'darkHeader');
   // toggleDarkModeClasses(elmWitchChange3, 'darkHeader');
   // toggleDarkModeClasses(elmWitchChange4, 'darkHeader');
-  toggleDarkModeClasses(elmWitchChange5, 'darkHeader');
-  toggleDarkModeClasses(elmWitchChange6, 'darkHeader');
-  toggleDarkModeClasses(elmWitchChange7, 'darkHeader');
-  toggleDarkModeClasses(elmWitchChange8, 'darkHeader');
+  // toggleDarkModeClasses(elmWitchChange5, 'darkHeader');
+  // toggleDarkModeClasses(elmWitchChange6, 'darkHeader');
+  // toggleDarkModeClasses(elmWitchChange7, 'darkHeader');
+  // toggleDarkModeClasses(elmWitchChange8, 'darkHeader');
  // toggleDarkModeClasses(elmWitchChange9, 'darkHeader');
   }else {
-    toggleDarkModeClasses(elmWitchChange3, 'dark');
-    toggleDarkModeClasses(elmWitchChange7, 'darkHeader');
-    toggleDarkModeClasses(elmWitchChange6, 'darkHeader');
+    // toggleDarkModeClasses(elmWitchChange3, 'dark');
+    // toggleDarkModeClasses(elmWitchChange7, 'darkHeader');
+    // toggleDarkModeClasses(elmWitchChange6, 'darkHeader');
   }
 
 
@@ -59,11 +59,7 @@ useEffect(() => {
 
 
   return (
-    <Routes>
-      {/* Route for the home page */}
-      <Route path="/" exact element={
-      <React.Fragment>
-      <div className={`App light ${isDarkMode ? '' : ''}`} >
+      <div className={`App  ${isDarkMode ? 'dark' : ''}`} >
       <div className= {`dark-mode-container ${isDarkMode ? 'darkHeader':''} `}  style={{display: 'flex', justifyContent: 'space-between',}}>
       <h1 >Where in the world?</h1>
 
@@ -72,9 +68,10 @@ useEffect(() => {
   <button id="switch"className="theme-switch" type="button" style={{fontFamily:'Nunito Sans' ,marginLeft:'4px',color:`${isDarkMode ? 'white' : 'black'}`}}>{isDarkMode ? 'Light' : 'Dark'} Mode</button>
 </div>
 </div>
+    <Routes>
+      {/* Route for the home page */}
+      <Route path="/" exact element={
       <FlagsGrid isDarkMode={isDarkMode} />
-    </div>
-    </React.Fragment>
       }/>
 
       {/* Additional routes can be added here if needed */}
@@ -83,7 +80,7 @@ useEffect(() => {
       <Route path="*" element={<React.Fragment><div>404 Not Found</div></React.Fragment>}/>
 
     </Routes>
-   
+    </div>
   );
 };
 
