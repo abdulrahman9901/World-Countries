@@ -16,6 +16,7 @@ const CountryCard = ({ country ,isDarkMode }) => {
       src={country.flags.png}
       alt={country.name}
       className="flag-image"
+      crossorigin="anonymous"
     />
     <div className="country-details" >
       <h3>{country.name}</h3><br/>
