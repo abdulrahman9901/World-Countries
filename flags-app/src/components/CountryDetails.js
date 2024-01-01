@@ -76,11 +76,6 @@ const handleBack = () => {
     {/* Back button */}
     <div className="button-container">
     <Button
-   style={{
-    width: '110px !important',
-    height: '32px !important',
-    paddingLeft: '10px !important'
-  }}
      className={isDarkMode ? 'darkHeader' : ''} onClick={handleBack} ><ArrowLeftOutlined /> Back</Button>
     </div>
 
@@ -105,7 +100,7 @@ const handleBack = () => {
         <p style={{margin:'8px'}}><strong>Languages:</strong> {countryData.languages && countryData.languages.map(lang => `${lang.name}`).join(', ')}</p> 
     </div>
       {/* Add other details here */}
-      <div className="country-borders" style={{ display: 'flex', flexDirection: 'row' , placeItems:"center"}}>
+      <div className="country-borders" style={{ display: 'flex', flexDirection: 'row' , placeItems:"center" , flexWrap:'wrap'}}>
       <strong>Border Countries:  </strong>  
       {borderCountryNames.map((borderCountry) => (
         <div  className={isDarkMode ? 'darkHeader' : ''} key={borderCountry} 
@@ -113,7 +108,7 @@ const handleBack = () => {
           minWidth: '85px',
           width:'fit-content',
           textAlign: 'center',
-          marginLeft: '8px' , padding:'5px',
+          margin: '8px' , padding:'5px',
           backgroundColor:'white'
           }}>
           {borderCountry}

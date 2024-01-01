@@ -276,6 +276,12 @@ background-color: initial !important;
 .details{
   display:grid;
   grid-template-columns: 1fr 1fr;
+  grid-auto-flow: row;
   gap: 0px;
   margin-bottom: 65px;
+}
+.button-container > button.ant-btn {
+  width: 110px ;
+  height: 32px ;
+  padding-left: 10px;
 }
