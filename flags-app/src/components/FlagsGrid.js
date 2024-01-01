@@ -100,14 +100,16 @@ return (
 <span className={`ant-input-wrapper ant-input-group css-dev-only-do-not-override-1g853jt ${isDarkMode ? 'darkHeader' : ''}`}>
 <span  className={`ant-input-group-addon  ${isDarkMode ? 'darkHeader' : ''}`}>
   <span role="img" aria-label="search" className={`anticon anticon-search ${isDarkMode ? 'darkHeader' : ''}`}>
-    </span></span>
+    </span>
+    <SearchOutlined />
+    </span>
+   
     <Input
       className={`searchBar ${isDarkMode ? 'darkHeader' : ''}`}
       type="text"
       placeholder="Search by name..."
       value={searchTerm}
       size="large" 
-      addonBefore={<SearchOutlined />}
       onChange={(e) => { setSearchTerm(e.target.value)}}
       />
     </span>

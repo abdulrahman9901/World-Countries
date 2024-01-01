@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Image , Button ,Spin } from 'antd';
 import {ArrowLeftOutlined} from '@ant-design/icons';
+import axios from 'axios'
 
 // import CardDetails from './CardDetails';
 
@@ -11,17 +12,9 @@ const DetailsPage = ({setShouldToggleDarkMode,setIsDarkMode,isDarkMode}) => {
   const navigate = useNavigate(); // Get the navigate function
   const [countryData, setCountryData] = useState(null);
   const [borderCountryNames, setBorderCountryNames] = useState([]);
-  // Fetch country details based on the countryCode or use a state management library
-  // to pass the details from the previous page.
+  const [isLoading, setIsLoading] = useState(true);
+  const [processedImage, setProcessedImage] = useState(null);
 
-  // Example: Fetch country details using an API
-  // const [countryDetails, setCountryDetails] = useState(null);
-
-  // useEffect(() => {
-  //   // Fetch country details using the countryCode
-  //   // Example API call: axios.get(`/api/countries/${countryCode}`)
-  //   // setCountryDetails(response.data);
-  // }, [countryCode]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,15 +40,31 @@ const DetailsPage = ({setShouldToggleDarkMode,setIsDarkMode,isDarkMode}) => {
   
           // Set the names of the border countries in state
           setBorderCountryNames(validBorderCountryDetails);
+
+      
         } else {
           console.error('Country not found.');
         }
+        const Imgresponse = await axios.post('http://localhost:3001/process-image', { url: country.flags.svg }, { responseType: 'arraybuffer' });
+ 
+        // Convert binary data to Uint8Array
+    const uint8Array = new Uint8Array(Imgresponse.data);
+
+    // Create a Blob from the Uint8Array
+    const blob = new Blob([uint8Array], { type: 'image/png' });
+
+    // Create a data URL from the Blob
+    const dataUrl = URL.createObjectURL(blob);
+      
+        setProcessedImage(`${dataUrl}`);
+      setIsLoading(false);
       } catch (error) {
         console.error('Error fetching country data:', error);
       }
     };
-  
+
     fetchData();
+
   }, [countryCode]);
    
   const centerStyle = {
@@ -92,7 +101,17 @@ const handleBack = () => {
 
     {/* Image */}
     <div className="image-container">
-      <Image minWidthwidth={'80%'} src={countryData.flags.svg} />
+    {isLoading ? (
+          <div style={centerStyle}>
+          <Spin style={centerStyle} tip="" >
+            <div style={centerStyle} className="content" />
+          </Spin>
+        </div>
+      ) : (
+        processedImage && (
+          <Image minWidthwidth={'80%'} src={processedImage} />
+        )
+      )}
     </div>
 
     {/* Details */}
