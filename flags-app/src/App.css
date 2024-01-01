@@ -285,3 +285,62 @@ background-color: initial !important;
   height: 32px ;
   padding-left: 10px;
 }
+.details P {
+  margin: 8px;
+}
+
+/* Add this CSS for small screens (adjust the max-width as needed) */
+@media (max-width: 900px) { 
+  .details {
+    margin-bottom: 15px;
+  }
+  .details P {
+    margin: 4px;
+  }
+
+}
+@media (max-width: 768px) {
+  .details-page {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  .image-container {
+    width: 100%; /* Make the image container full width */
+    
+  }
+
+  .details-container {
+    width: 100%;
+  }
+  .button-container{
+    text-align: left;
+  }
+ 
+}
+
+
+@media(max-width:600px) {
+  .details p {
+    text-align: center;
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+#dark-mode-btn {
+  padding: 5px;
+  border-radius: 5px;
+}
+#dark-mode-btn.darkHeader:hover {
+background-color:#202D36 !important;
+}
+#dark-mode-btn:hover {
+  background-color:#FAFAFA !important;
+}
+#switch:hover , .fa-sun:hover , .fa-moon:hover , #dark-mode-btn:hover {
+  cursor: pointer;
+}  

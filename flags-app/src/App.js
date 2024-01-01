@@ -63,7 +63,7 @@ useEffect(() => {
       <div className= {`dark-mode-container ${isDarkMode ? 'darkHeader':''} `}  style={{display: 'flex', justifyContent: 'space-between',}}>
       <h1 >Where in the world?</h1>
 
-  <div id="dark-mode-btn"  onClick={() =>handleDarkModeToggle()} style={{ display: 'flex', alignItems: 'center', }}>
+  <div id="dark-mode-btn" className={`${isDarkMode ? 'darkHeader':''}`} onClick={() =>handleDarkModeToggle()} style={{ display: 'flex', alignItems: 'center', }}>
   <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} title="Switch to Dark mode" />
   <button id="switch"className="theme-switch" type="button" style={{fontFamily:'Nunito Sans' ,marginLeft:'4px',color:`${isDarkMode ? 'white' : 'black'}`}}>{isDarkMode ? 'Light' : 'Dark'} Mode</button>
 </div>

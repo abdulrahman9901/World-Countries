@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Image , Button } from 'antd';
+import { Image , Button ,Spin } from 'antd';
 import {ArrowLeftOutlined} from '@ant-design/icons';
 
 // import CardDetails from './CardDetails';
@@ -58,9 +58,20 @@ const DetailsPage = ({setShouldToggleDarkMode,setIsDarkMode,isDarkMode}) => {
     fetchData();
   }, [countryCode]);
    
+  const centerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh', // 100% of the viewport height
+  };
   if (!countryData) {
-    return <div>Loading...</div>; // You can show a loading spinner or message
-  }
+    return (   
+      <div style={centerStyle}>
+      <Spin style={centerStyle} tip="" size="large">
+        <div style={centerStyle} className="content" />
+      </Spin>
+    </div>
+  )}
 // Set the shouldToggleDarkMode state to false when navigating back
 const handleBack = () => {
     // Set shouldToggleDarkMode to false before navigating back
@@ -90,30 +101,34 @@ const handleBack = () => {
 
       <div className='country-name'><h2>{countryData.name}</h2></div>
       <div className="details" >
-       <p style={{margin:'8px'}}><strong>Native Name:</strong> {countryData.nativeName}</p>
-        <p style={{margin:'8px'}}><strong>Population:</strong> {countryData.population}</p>
-        <p style={{margin:'8px'}}><strong>Region:</strong> {countryData.region}</p>
-        <p style={{margin:'8px'}}><strong>Sub Region:</strong> {countryData.subregion}</p>
-        <p style={{margin:'8px'}}><strong>Capital:</strong> {countryData.capital}</p>
-        <p style={{margin:'8px'}}><strong>Top Level Domain:</strong> {countryData.topLevelDomain[0]}</p>
-        <p style={{margin:'8px'}}><strong>Currencies:</strong> {countryData.currencies && countryData.currencies.map(currency => `${currency.name}`).join(', ')}</p>
-        <p style={{margin:'8px'}}><strong>Languages:</strong> {countryData.languages && countryData.languages.map(lang => `${lang.name}`).join(', ')}</p> 
+        <p ><strong>Native Name:</strong> {countryData.nativeName}</p>
+        <p ><strong>Population:</strong> {countryData.population}</p>
+        <p ><strong>Region:</strong> {countryData.region}</p>
+        <p ><strong>Sub Region:</strong> {countryData.subregion}</p>
+        <p ><strong>Capital:</strong> {countryData.capital}</p>
+        <p ><strong>Top Level Domain:</strong> {countryData.topLevelDomain[0]}</p>
+        <p ><strong>Currencies:</strong> {countryData.currencies && countryData.currencies.map(currency => `${currency.name}`).join(', ')}</p>
+        <p ><strong>Languages:</strong> {countryData.languages && countryData.languages.map(lang => `${lang.name}`).join(', ')}</p> 
     </div>
       {/* Add other details here */}
       <div className="country-borders" style={{ display: 'flex', flexDirection: 'row' , placeItems:"center" , flexWrap:'wrap'}}>
       <strong>Border Countries:  </strong>  
-      {borderCountryNames.map((borderCountry) => (
-        <div  className={isDarkMode ? 'darkHeader' : ''} key={borderCountry} 
+      {borderCountryNames.length === 0 ? (
+    <p style={{marginLeft:"10px"}}>  No border countries available.</p>
+  ) : (
+    borderCountryNames.map((borderCountry) => (
+      <div className={isDarkMode ? 'darkHeader' : ''} key={borderCountry}
         style={{
           minWidth: '85px',
-          width:'fit-content',
+          width: 'fit-content',
           textAlign: 'center',
-          margin: '8px' , padding:'5px',
-          backgroundColor:'white'
-          }}>
-          {borderCountry}
-        </div>
-      ))}
+          margin: '8px', padding: '5px',
+          backgroundColor: 'white'
+        }}>
+        {borderCountry}
+      </div>
+    ))
+  )}
     </div>
     
     </div>
