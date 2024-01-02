@@ -12,7 +12,7 @@ app.use(cors());
 app.post('/process-image', async (req, res) => {
   try {
     const imageUrl = req.body.url;
-=    // Fetch the image from the provided URL
+    // Fetch the image from the provided URL
     const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
     const imageData = Buffer.from(response.data, 'binary');
 
