@@ -7,16 +7,12 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3001;
 
-const { execSync } = require('child_process');
-execSync('npm install --arch=x64 --platform=linux --target=14.17.5 --unsafe-perm=true --allow-root sharp', { stdio: 'inherit' });
-
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(cors());
 app.post('/process-image', async (req, res) => {
   try {
     const imageUrl = req.body.url;
-    console.log('Error processing image:', error);
-    // Fetch the image from the provided URL
+=    // Fetch the image from the provided URL
     const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
     const imageData = Buffer.from(response.data, 'binary');
 
