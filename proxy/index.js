@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-// const sharp = require('sharp');
+const sharp = require('sharp');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -17,9 +17,7 @@ app.post('/process-image', async (req, res) => {
     const imageData = Buffer.from(response.data, 'binary');
 
     // Process the image (resize, modify, etc.)
-    const processedImage = await sharp(imageData)
-      //.resize({ width: 500 }) // Adjust the resizing as needed
-      .toBuffer();
+    const processedImage = await sharp(imageData).toBuffer();
 
     // Send the processed image back
     res.writeHead(200, { 'Content-Type': 'image/png' });
