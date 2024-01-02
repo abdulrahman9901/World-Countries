@@ -11,52 +11,10 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const toArray = (htmlCollection) => Array.from(htmlCollection);
-  const [shouldToggleDarkMode, setShouldToggleDarkMode] = useState(false);
   const handleDarkModeToggle = () => {
     setIsDarkMode(!isDarkMode);
-    setShouldToggleDarkMode(true);
   };
   
-  const toggleDarkModeClasses = (elements, className) => {
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].classList.toggle(className);
-    }
-  };
-
-
-useEffect(() => {
-  const elmWitchChange = toArray(document.getElementsByClassName('light'));
-  const elmWitchChange2 = toArray(document.getElementsByClassName('dark-mode-container'));
-  const elmWitchChange3 = toArray(document.getElementsByClassName('header'));
-  const elmWitchChange4 = toArray(document.getElementsByClassName('ant-btn'));
-  const elmWitchChange5 = toArray(document.getElementsByClassName('searchBar'));
-  const elmWitchChange6 = toArray(document.getElementsByClassName('ant-input-group-addon'));
-  const elmWitchChange7 = toArray(document.getElementsByClassName('ant-input-lg'));
-  const elmWitchChange8 = toArray(document.getElementsByClassName('searchBar'));
-  const elmWitchChange9 = toArray(document.getElementsByClassName('ant-dropdown-menu'));
-
-  console.log(shouldToggleDarkMode)
-
-  if (shouldToggleDarkMode) {
-  //  toggleDarkModeClasses(elmWitchChange, 'dark');
-  // toggleDarkModeClasses(elmWitchChange2, 'darkHeader');
-  // toggleDarkModeClasses(elmWitchChange3, 'darkHeader');
-  // toggleDarkModeClasses(elmWitchChange4, 'darkHeader');
-  // toggleDarkModeClasses(elmWitchChange5, 'darkHeader');
-  // toggleDarkModeClasses(elmWitchChange6, 'darkHeader');
-  // toggleDarkModeClasses(elmWitchChange7, 'darkHeader');
-  // toggleDarkModeClasses(elmWitchChange8, 'darkHeader');
- // toggleDarkModeClasses(elmWitchChange9, 'darkHeader');
-  }else {
-    // toggleDarkModeClasses(elmWitchChange3, 'dark');
-    // toggleDarkModeClasses(elmWitchChange7, 'darkHeader');
-    // toggleDarkModeClasses(elmWitchChange6, 'darkHeader');
-  }
-
-
-}, [isDarkMode, shouldToggleDarkMode]);
-
 
   return (
       <div className={`App  ${isDarkMode ? 'dark' : ''}`} >
@@ -75,7 +33,7 @@ useEffect(() => {
       }/>
 
       {/* Additional routes can be added here if needed */}
-      <Route path="/details/:countryCode" element={<DetailsPage setIsDarkMode={setIsDarkMode} isDarkMode={isDarkMode} setShouldToggleDarkMode={setShouldToggleDarkMode} />}/>
+      <Route path="/details/:countryCode" element={<DetailsPage setIsDarkMode={setIsDarkMode} isDarkMode={isDarkMode}  />}/>
       {/* Add a catch-all route for unknown paths */}
       <Route path="*" element={<React.Fragment><div>404 Not Found</div></React.Fragment>}/>
 

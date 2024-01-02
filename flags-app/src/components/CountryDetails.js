@@ -7,7 +7,7 @@ import axios from 'axios'
 
 // import CardDetails from './CardDetails';
 
-const DetailsPage = ({setShouldToggleDarkMode,setIsDarkMode,isDarkMode}) => {
+const DetailsPage = ({setIsDarkMode,isDarkMode}) => {
   const { countryCode } = useParams(); // Use the country code as a parameter
   const navigate = useNavigate(); // Get the navigate function
   const [countryData, setCountryData] = useState(null);
@@ -89,7 +89,6 @@ const DetailsPage = ({setShouldToggleDarkMode,setIsDarkMode,isDarkMode}) => {
 const handleBack = () => {
     // Set shouldToggleDarkMode to false before navigating back
     // You can use this hook in your CountryCard component's onClick event
-    setShouldToggleDarkMode(false);
     setIsDarkMode(isDarkMode);
     // Navigate back to the home page
     navigate('/');
@@ -136,7 +135,7 @@ const handleBack = () => {
       {/* Add other details here */}
       <div className="country-borders" style={{ display: 'flex', flexDirection: 'row' , placeItems:"center" , flexWrap:'wrap'}}>
       <strong>Border Countries:  </strong>  
-      {borderCountryNames || borderCountryNames.length === 0 ? (
+      { borderCountryNames.length === 0 ? (
     <p style={{marginLeft:"10px"}}>  No border countries available.</p>
   ) : (
     borderCountryNames.map((borderCountry) => (
