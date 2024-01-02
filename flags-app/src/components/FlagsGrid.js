@@ -92,10 +92,10 @@ return (
       placeholder="Search by name..."
       value={searchTerm}
       size="large" 
-      addonBefore={<SearchOutlined className={`${isDarkMode ? 'darkHeader' : ''}`}
-      style={{color: `${isDarkMode ? 'white ' : 'black'}`}} />}
+      addonBefore={<SearchOutlined  className={`${isDarkMode ? 'darkHeader' : ''}`}
+      style={{width:'100%' , backgroundColor:`${isDarkMode ? '#2B3743 ' : 'white'}`,color:`${isDarkMode ? 'white ' : 'black'}`}} />}
       onChange={(e) => { setSearchTerm(e.target.value)}}
-      style={{color: `${isDarkMode ? 'white ' : 'black'}`,backgroundColor:`${isDarkMode ? '#2B3743 ' : 'white'}`, minWidth: '300px' , maxWidth:'370px', gridColumnStart: '1' , gridColumnEnd: '2'}} 
+      styles={{color: `${isDarkMode ? 'white ' : 'black'}`,backgroundColor:`${isDarkMode ? '#2B3743 ' : 'white'}`, minWidth: '300px' , maxWidth:'370px', gridColumnStart: '1' , gridColumnEnd: '2'}} 
       />
 {/* <span className={`${isDarkMode ? 'darkHeader' : ''} ant-input-group-wrapper searchBar ant-input-group-wrapper-lg css-dev-only-do-not-override-1g853jt`} style={{color: "black", backgroundColor: 'white', minWidth: '300px', maxWidth: '370px', gridColumn: '1 / 2'}}>
 <span className={`ant-input-wrapper ant-input-group css-dev-only-do-not-override-1g853jt ${isDarkMode ? 'darkHeader' : ''}`}>
