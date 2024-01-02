@@ -17,13 +17,13 @@ app.post('/process-image', async (req, res) => {
     const imageData = Buffer.from(response.data, 'binary');
 
     // Process the image (resize, modify, etc.)
-    // const processedImage = await sharp(imageData)
-    //   .resize({ width: 500 }) // Adjust the resizing as needed
-    //   .toBuffer();
+    const processedImage = await sharp(imageData)
+      //.resize({ width: 500 }) // Adjust the resizing as needed
+      .toBuffer();
 
     // Send the processed image back
     res.writeHead(200, { 'Content-Type': 'image/png' });
-    res.end(imageData, 'binary');
+    res.end(processedImage, 'binary');
   } catch (error) {
     console.log('Error processing image:', error);
     console.error('Error processing image:', error);
