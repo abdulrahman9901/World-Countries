@@ -92,7 +92,8 @@ return (
       placeholder="Search by name..."
       value={searchTerm}
       size="large" 
-      addonBefore={<SearchOutlined />}
+      addonBefore={<SearchOutlined className={`${isDarkMode ? 'darkHeader' : ''}`}
+      style={{color: `${isDarkMode ? 'white ' : 'black'}`}} />}
       onChange={(e) => { setSearchTerm(e.target.value)}}
       style={{color: `${isDarkMode ? 'white ' : 'black'}`,backgroundColor:`${isDarkMode ? '#2B3743 ' : 'white'}`, minWidth: '300px' , maxWidth:'370px', gridColumnStart: '1' , gridColumnEnd: '2'}} 
       />
