@@ -26,18 +26,22 @@ const DetailsPage = ({setShouldToggleDarkMode,setIsDarkMode,isDarkMode}) => {
   
         if (country) {
           setCountryData(country);
-  
+          let borderCountryDetails ;
+          if(country.border){
           // Fetch details of border countries
-          const borderCountryDetails = await Promise.all(
+           borderCountryDetails = await Promise.all(
             country.borders.map(async (borderCode) => {
               const borderCountry = data.find((c) => c.alpha3Code === borderCode);
               return borderCountry ? borderCountry.name : null;
             })
           );
+          }else {
+            borderCountryDetails = [];
+          }
   
           // Filter out null values (countries not found)
           const validBorderCountryDetails = borderCountryDetails.filter((borderCountry) => borderCountry !== null);
-  
+            
           // Set the names of the border countries in state
           setBorderCountryNames(validBorderCountryDetails);
 
@@ -56,7 +60,7 @@ const DetailsPage = ({setShouldToggleDarkMode,setIsDarkMode,isDarkMode}) => {
     // Create a data URL from the Blob
     const dataUrl = URL.createObjectURL(blob);
       
-        setProcessedImage(`${dataUrl}`);
+      setProcessedImage(`${dataUrl}`);
       setIsLoading(false);
       } catch (error) {
         console.error('Error fetching country data:', error);
@@ -125,14 +129,14 @@ const handleBack = () => {
         <p ><strong>Region:</strong> {countryData.region}</p>
         <p ><strong>Sub Region:</strong> {countryData.subregion}</p>
         <p ><strong>Capital:</strong> {countryData.capital}</p>
-        <p ><strong>Top Level Domain:</strong> {countryData.topLevelDomain[0]}</p>
+        <p ><strong>Top Level Domain:</strong> {countryData.topLevelDomain && countryData.topLevelDomain[0]}</p>
         <p ><strong>Currencies:</strong> {countryData.currencies && countryData.currencies.map(currency => `${currency.name}`).join(', ')}</p>
         <p ><strong>Languages:</strong> {countryData.languages && countryData.languages.map(lang => `${lang.name}`).join(', ')}</p> 
     </div>
       {/* Add other details here */}
       <div className="country-borders" style={{ display: 'flex', flexDirection: 'row' , placeItems:"center" , flexWrap:'wrap'}}>
       <strong>Border Countries:  </strong>  
-      {borderCountryNames.length === 0 ? (
+      {borderCountryNames || borderCountryNames.length === 0 ? (
     <p style={{marginLeft:"10px"}}>  No border countries available.</p>
   ) : (
     borderCountryNames.map((borderCountry) => (
