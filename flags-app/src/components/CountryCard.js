@@ -17,7 +17,7 @@ const CountryCard = ({ country ,isDarkMode }) => {
   useEffect(() => {
     const processImage = async () => {
       try {
-        const response = await axios.post('https://world-countries-api-nine.vercel.app/process-image', { url: country.flags.png }, { responseType: 'arraybuffer' });
+        const response = await axios.post('https://world-countries-api.onrender.com/process-image', { url: country.flags.png }, { responseType: 'arraybuffer' });
  
          // Convert binary data to Uint8Array
     const uint8Array = new Uint8Array(response.data);
