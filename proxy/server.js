@@ -31,6 +31,10 @@ app.post('/process-image', async (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+   res.send("I'm Alive dude");
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

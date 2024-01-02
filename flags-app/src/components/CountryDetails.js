@@ -45,7 +45,7 @@ const DetailsPage = ({setShouldToggleDarkMode,setIsDarkMode,isDarkMode}) => {
         } else {
           console.error('Country not found.');
         }
-        const Imgresponse = await axios.post('http://localhost:3001/process-image', { url: country.flags.svg }, { responseType: 'arraybuffer' });
+        const Imgresponse = await axios.post('https://world-countries-api-nine.vercel.app/process-image', { url: country.flags.svg }, { responseType: 'arraybuffer' });
  
         // Convert binary data to Uint8Array
     const uint8Array = new Uint8Array(Imgresponse.data);
@@ -109,7 +109,7 @@ const handleBack = () => {
         </div>
       ) : (
         processedImage && (
-          <Image minWidthwidth={'80%'} src={processedImage} />
+          <Image minWidthwidth={'100%'} src={processedImage} />
         )
       )}
     </div>
