@@ -27,7 +27,7 @@ const DetailsPage = ({setIsDarkMode,isDarkMode}) => {
         if (country) {
           setCountryData(country);
           let borderCountryDetails ;
-          if(country.border){
+          if(country.borders){
           // Fetch details of border countries
            borderCountryDetails = await Promise.all(
             country.borders.map(async (borderCode) => {
@@ -135,7 +135,7 @@ const handleBack = () => {
       {/* Add other details here */}
       <div className="country-borders" style={{ display: 'flex', flexDirection: 'row' , placeItems:"center" , flexWrap:'wrap'}}>
       <strong>Border Countries:  </strong>  
-      { borderCountryNames.length === 0 ? (
+      {borderCountryNames.length === 0 ? (
     <p style={{marginLeft:"10px"}}>  No border countries available.</p>
   ) : (
     borderCountryNames.map((borderCountry) => (
