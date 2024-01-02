@@ -86,7 +86,7 @@ return (
   <>
   <div>
   <div className={`flags-grid header  ${isDarkMode ? 'dark' : ''} `} style={{margin:'auto' , maxWidth :"1200px" , display: 'grid', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-    {/* <Input
+    <Input
       className={`searchBar ${isDarkMode ? 'darkHeader' : ''}`}
       type="text"
       placeholder="Search by name..."
@@ -95,8 +95,8 @@ return (
       addonBefore={<SearchOutlined />}
       onChange={(e) => { setSearchTerm(e.target.value)}}
       style={{color: `${isDarkMode ? 'white ' : 'black'}`,backgroundColor:`${isDarkMode ? '#2B3743 ' : 'white'}`, minWidth: '300px' , maxWidth:'370px', gridColumnStart: '1' , gridColumnEnd: '2'}} 
-      /> */}
-<span className={`${isDarkMode ? 'darkHeader' : ''} ant-input-group-wrapper searchBar ant-input-group-wrapper-lg css-dev-only-do-not-override-1g853jt`} style={{color: "black", backgroundColor: 'white', minWidth: '300px', maxWidth: '370px', gridColumn: '1 / 2'}}>
+      />
+{/* <span className={`${isDarkMode ? 'darkHeader' : ''} ant-input-group-wrapper searchBar ant-input-group-wrapper-lg css-dev-only-do-not-override-1g853jt`} style={{color: "black", backgroundColor: 'white', minWidth: '300px', maxWidth: '370px', gridColumn: '1 / 2'}}>
 <span className={`ant-input-wrapper ant-input-group css-dev-only-do-not-override-1g853jt ${isDarkMode ? 'darkHeader' : ''}`}>
 <span  className={`ant-input-group-addon  ${isDarkMode ? 'darkHeader' : ''}`}>
   <span role="img" aria-label="search" className={`anticon anticon-search ${isDarkMode ? 'darkHeader' : ''}`}>
@@ -113,7 +113,7 @@ return (
       onChange={(e) => { setSearchTerm(e.target.value)}}
       />
     </span>
-    </span>
+    </span> */}
 
       <Dropdown
        className = {`dropdownMen`}
