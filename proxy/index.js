@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
