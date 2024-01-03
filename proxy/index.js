@@ -20,6 +20,7 @@ app.post('/process-image', async (req, res) => {
     // Process the image (resize, modify, etc.)
     // const processedImage = await sharp(imageData).toBuffer();
     const image = await Jimp.read(imageData);
+    image.resize(500, Jimp.AUTO); // Adjust the resizing as needed
     const processedImageBuffer = await image.getBufferAsync(Jimp.MIME_PNG);
     
     // Send the processed image back
