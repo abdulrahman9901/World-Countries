@@ -1,7 +1,8 @@
 const express = require('express');
 const axios = require('axios');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const cors = require('cors');
+const Jimp = require('jimp');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -17,13 +18,14 @@ app.post('/process-image', async (req, res) => {
     const imageData = Buffer.from(response.data, 'binary');
 
     // Process the image (resize, modify, etc.)
-    const processedImage = await sharp(imageData).toBuffer();
-
+    // const processedImage = await sharp(imageData).toBuffer();
+    const image = await Jimp.read(imageData);
+    const processedImageBuffer = await image.getBufferAsync(Jimp.MIME_PNG);
+    
     // Send the processed image back
     res.writeHead(200, { 'Content-Type': 'image/png' });
-    res.end(processedImage, 'binary');
+    res.end(processedImageBuffer, 'binary');
   } catch (error) {
-    console.log('Error processing image:', error);
     console.error('Error processing image:', error);
     res.status(500).send('Internal Server Error');
   }
